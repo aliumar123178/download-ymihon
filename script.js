@@ -209,3 +209,24 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault(); // Stop browser's default hidden prompt
+  deferredPrompt = e;
+
+  // Show prompt after a short delay (simulate auto-install)
+  setTimeout(() => {
+    deferredPrompt.prompt();
+
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('✅ User accepted the install prompt');
+      } else {
+        console.log('❌ User dismissed the install prompt');
+      }
+      deferredPrompt = null;
+    });
+  }, 2000); // Delay 2 seconds to feel natural
+});
+
