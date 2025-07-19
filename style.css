@@ -374,5 +374,14 @@ footer {
 @media (max-width: 426px) {
   footer {
     
+    text-align: center;
+    
+  
   }
+}
+.attribution{
+  
+  color: blue;
+  
+  
 }
